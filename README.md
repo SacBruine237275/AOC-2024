@@ -3,3 +3,8 @@
 This repository contains all my code for the 2024 Advent of Code challenge.
 
 You can follow along here: [Advent of Code 2024](https://adventofcode.com/2024)
+
+I am taking on this challenge by solving the problems in different programming languages:
+
+- **Day 1**: Code written in Java
+- **Day 2**: Code written in .NET
