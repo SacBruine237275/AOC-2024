@@ -8,3 +8,4 @@ I am taking on this challenge by solving the problems in different programming l
 - **Day 2**: Code written in .NET
 - **Day 3**: Code written in JavaScript
 - **Day 4**: Code written in Python
+- **Day 5**: Code written in Java
