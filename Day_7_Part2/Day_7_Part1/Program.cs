@@ -16,7 +16,7 @@ class Program
             long targetResult = long.Parse(parts[0].Trim());
             var numbers = Array.ConvertAll(parts[1].Trim().Split(' '), long.Parse);
 
-            if (FindResult(numbers, targetResult, out string expression))
+            if (FindResult(numbers, targetResult))
             {
                 result += targetResult;
             }
@@ -28,19 +28,17 @@ class Program
         Console.WriteLine(result);
     }
 
-    static bool FindResult(long[] numbers, long target, out string expression)
+    static bool FindResult(long[] numbers, long target)
     {
-        expression = null;
-        return TryCalculate(numbers, 1, numbers[0], $"{numbers[0]}", target, ref expression);
+        return TryCalculate(numbers, 1, numbers[0], target);
     }
 
-    static bool TryCalculate(long[] numbers, int index, long currentResult, string currentExpression, long target, ref string validExpression)
+    static bool TryCalculate(long[] numbers, int index, long currentResult, long target)
     {
         if (index == numbers.Length)
         {
             if (currentResult == target)
             {
-                validExpression = currentExpression;
                 return true;
             }
             return false;
@@ -48,19 +46,17 @@ class Program
 
         long nextNumber = numbers[index];
 
-        // Test addition
-        if (TryCalculate(numbers, index + 1, currentResult + nextNumber, $"{currentExpression} + {nextNumber}", target, ref validExpression))
+        if (TryCalculate(numbers, index + 1, currentResult + nextNumber, target))
         {
             return true;
         }
 
-        // Test multiplication
-        if (TryCalculate(numbers, index + 1, currentResult * nextNumber, $"{currentExpression} * {nextNumber}", target, ref validExpression))
+        if (TryCalculate(numbers, index + 1, currentResult * nextNumber, target))
         {
             return true;
         }
         
-        if (TryCalculate(numbers, index + 1, long.Parse(currentResult.ToString() + nextNumber.ToString()), $"{currentExpression} || {nextNumber}", target, ref validExpression))
+        if (TryCalculate(numbers, index + 1, long.Parse(currentResult.ToString() + nextNumber.ToString()), target))
         {
             return true;
         }
